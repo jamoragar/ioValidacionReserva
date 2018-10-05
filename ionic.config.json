@@ -1,0 +1,7 @@
+{
+  "name": "ioValidacionReservas",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

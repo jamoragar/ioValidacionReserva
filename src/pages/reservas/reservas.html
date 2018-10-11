@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+        <span ion-text>Listado de Reserva(s)</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="trips detail-bg">
+  <ion-card *ngFor="let reserva of reservas">
+    <ion-card-title style="margin-left:1em;">ID de Reserva: {{ reserva.id_reserva }}</ion-card-title>
+    <ion-card-content>
+      <div class="padding-sm primary-bg">
+        <ion-icon name="time" class="text-white"></ion-icon>
+        <span ion-text class="text-white">{{ reserva.horario_cruce | date :"dd/MM/yyyy 'Cruce:' h:mma ":"+0000" }}</span>
+        <span class="pull-right" ion-text color="light"><strong>TRAMO:</strong> <span ion-text  class="text-green bold">{{ reserva.nombre_corto }}</span></span>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

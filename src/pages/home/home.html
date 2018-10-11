@@ -1,14 +1,49 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        <strong>Validación</strong> de Reservas
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding class="animated fadeIn common-bg">
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+    <ion-card no-margin margin-bottom class="full-width">
+      <ion-card-title style="margin-left:5%;">Criterios de Búsqueda</ion-card-title>
+        <ion-item tappable class="border-bottom">
+          <ion-icon name="clipboard" item-start class="text-primary"></ion-icon>
+          <ion-input [(ngModel)]="id_reserva" name="id_reserva" type="text" placeholder="ID de Reserva" maxlength="7"></ion-input>
+        </ion-item>
+        <ion-item tappable class="border-bottom">
+          <ion-icon name="card" item-start class="text-primary"></ion-icon>
+          <ion-input [(ngModel)]="identificacion" name="identificacion" type="text" placeholder="N° de Identificación" minlength="8" maxlength="10"></ion-input>
+        </ion-item>
+        <ion-item tappable class="border-bottom">
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          <ion-input [(ngModel)]="nombre" name="nombre" type="text" placeholder="Nombre" maxlength="20"></ion-input>
+        </ion-item>
+        <ion-item tappable class="border-bottom">
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          <ion-input [(ngModel)]="apellido" name="apellido" type="text" placeholder="Apellido" maxlength="20"></ion-input>
+        </ion-item>
+        <ion-item tappable class="border-bottom">
+          <ion-icon name="car" item-start class="text-primary"></ion-icon>
+          <ion-input [(ngModel)]="patente" name="patente" type="text" placeholder="Patente Vehículo" maxlength="8"></ion-input>
+        </ion-item>
+      </ion-card>
+      
+      <button ion-button icon-start block no-margin color="primary" class="round" tappable 
+              (click)="search(id_reserva, identificacion, nombre, apellido, patente)"
+              [disabled]="id_reserva?.length < 6 && identificacion?.length < 8 && nombre?.length < 3 && apellido?.length < 3 && patente?.length < 4">
+        <ion-icon name="search"></ion-icon> Buscar
+      </button>
+      <br>
+      <button ion-button icon-start block no-margin color="danger" class="round" tappable (click)="limpiarBusqueda()">
+        <ion-icon name="trash"></ion-icon> Limpiar
+      </button>
+      
+  </ion-content>
+  

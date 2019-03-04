@@ -17,13 +17,6 @@ export class HomePage {
   constructor(public nav: NavController, public restService: RestServiceProvider, private toast: ToastController) {
   }
 
-  ionViewWillEnter() {
-  }
-
-  // go to result page
-  doSearch() {
-    this.nav.push(ReservasPage);
-  }
   search(id_reserva, identificacion, nombre, apellido, patente){
     var _id_reserva:number = id_reserva;
     var _identificacion:string = identificacion;

@@ -15,23 +15,23 @@
       <ion-card-title style="margin-left:5%;">Criterios de Búsqueda</ion-card-title>
         <ion-item tappable class="border-bottom">
           <ion-icon name="clipboard" item-start class="text-primary"></ion-icon>
-          <ion-input [(ngModel)]="id_reserva" name="id_reserva" type="text" placeholder="ID de Reserva" maxlength="7"></ion-input>
+          <ion-input [(ngModel)]="id_reserva" name="id_reserva" type="text" placeholder="ID de Reserva" maxlength="7" (keyup.enter)="search(id_reserva, identificacion, nombre, apellido, patente)"></ion-input>
         </ion-item>
         <ion-item tappable class="border-bottom">
           <ion-icon name="card" item-start class="text-primary"></ion-icon>
-          <ion-input [(ngModel)]="identificacion" name="identificacion" type="text" placeholder="N° de Identificación" minlength="8" maxlength="10"></ion-input>
+          <ion-input [(ngModel)]="identificacion" name="identificacion" type="text" placeholder="N° de Identificación" minlength="8" maxlength="10" (keyup.enter)="search(id_reserva, identificacion, nombre, apellido, patente)"></ion-input>
         </ion-item>
         <ion-item tappable class="border-bottom">
           <ion-icon name="person" item-start class="text-primary"></ion-icon>
-          <ion-input [(ngModel)]="nombre" name="nombre" type="text" placeholder="Nombre" maxlength="20"></ion-input>
+          <ion-input [(ngModel)]="nombre" name="nombre" type="text" placeholder="Nombre" maxlength="20" (keyup.enter)="search(id_reserva, identificacion, nombre, apellido, patente)"></ion-input>
         </ion-item>
         <ion-item tappable class="border-bottom">
           <ion-icon name="person" item-start class="text-primary"></ion-icon>
-          <ion-input [(ngModel)]="apellido" name="apellido" type="text" placeholder="Apellido" maxlength="20"></ion-input>
+          <ion-input [(ngModel)]="apellido" name="apellido" type="text" placeholder="Apellido" maxlength="20" (keyup.enter)="search(id_reserva, identificacion, nombre, apellido, patente)"></ion-input>
         </ion-item>
         <ion-item tappable class="border-bottom">
           <ion-icon name="car" item-start class="text-primary"></ion-icon>
-          <ion-input [(ngModel)]="patente" name="patente" type="text" placeholder="Patente Vehículo" maxlength="8"></ion-input>
+          <ion-input [(ngModel)]="patente" name="patente" type="text" placeholder="Patente Vehículo" maxlength="8" (keyup.enter)="search(id_reserva, identificacion, nombre, apellido, patente)"></ion-input>
         </ion-item>
       </ion-card>
       

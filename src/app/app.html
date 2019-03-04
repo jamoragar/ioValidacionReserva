@@ -1,42 +1,39 @@
 <ion-menu side="left" id="authenticated" [content]="content">
-        <ion-header>
-          <ion-toolbar class="user-profile">
-      
-            <ion-grid>
-              <ion-row>
-                <ion-col col-4>
-                    <div class="user-avatar">
-                      <img src="../assets/img/avatar.jpeg">
-                    </div>
-                </ion-col>
-                <ion-col padding-top col-8>
-                  <h2 ion-text class="no-margin bold text-white">
-                    Usuario Tabsa
-                  </h2>
-                  <span ion-text color="light">Customer</span>
-                </ion-col>
-              </ion-row>
-      
-              <ion-row no-padding class="other-data">
-                <ion-col no-padding class="column">
-                  <button ion-button icon-left small full color="light" menuClose disabled>
-                    <ion-icon name="contact"></ion-icon>
-                    Editar Perfil
-                  </button>
-                </ion-col>
-                <ion-col no-padding class="column">
-                  <button ion-button icon-left small full color="light" menuClose (click)="logout()">
-                    <ion-icon name="log-out"></ion-icon>
-                    Cerrar Sesión
-                  </button>
-                </ion-col>
-              </ion-row>
-      
-            </ion-grid>
-      
-          </ion-toolbar>
-        </ion-header>
-      
+  <ion-header>
+    <ion-toolbar class="user-profile">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+              <div class="user-avatar">
+                <!-- <img src="../assets/img/avatar.jpeg"> -->
+              </div>
+          </ion-col>
+          <ion-col padding-top col-8>
+            <h2 ion-text class="no-margin bold text-white">
+              Usuario Tabsa
+            </h2>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding class="other-data">
+          <ion-col no-padding class="column">
+            <button ion-button icon-left small full color="light" menuClose (click)="logout()">
+              <ion-icon name="log-out"></ion-icon>
+              Cerrar Sesión
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-item (click)="toEmbarqueManual()">
+      <ion-icon item-left name="create"></ion-icon>
+      <span>Embarque Manual</span>
+    </ion-item>
+  </ion-content>
+<!--       
         <ion-content color="primary">
       
           <ion-list class="user-list">
@@ -45,9 +42,9 @@
               <span ion-text color="primary">{{menuItem.title}}</span>
             </button>
           </ion-list>
-        </ion-content>
+        </ion-content> -->
       
-      </ion-menu>
+</ion-menu>
 
 
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

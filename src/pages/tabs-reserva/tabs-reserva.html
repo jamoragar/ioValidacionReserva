@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+          <span ion-text>Detalle de Reserva</span>
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+  <ion-tabs>
+    <ion-tab tabIcon="clipboard" tabTitle="Reserva" [root]="tab_main" [rootParams]="data_reserva"></ion-tab>
+    <ion-tab tabIcon="person" tabTitle="Persona(s)" [root]="tab_persona" [rootParams]="data_reserva"></ion-tab>
+    <ion-tab tabIcon="car" tabTitle="Vehículo(s)" [root]="tab_vehiculo" [rootParams]="data_reserva"></ion-tab>
+    <ion-tab tabIcon="cube" tabTitle="Carga" [root]="tab_carga" [rootParams]="data_reserva"></ion-tab>
+  </ion-tabs>
+</ion-content>

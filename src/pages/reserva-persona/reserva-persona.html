@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      <span ion-text>Pasajero(s) de Reserva: {{ reserva_data.id_reserva }}</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="common-bg">
+    <div class="trip-info card round">
+      <ion-grid padding>
+        <ion-row *ngFor="let pasajero of pasajero_data">
+          <ion-col>
+            <div class="card round" margin-top>
+
+              <ion-list no-margin>
+                <ion-item class="primary-bg">
+                  <h2 ion-text class="text-white bold">Nombre: {{ pasajero.nombre }} {{ pasajero.apellido }}</h2>
+                </ion-item>
+              </ion-list>
+
+              <div padding>
+                <div ion-row>
+                  <div ion-col>
+                    <h5 ion-text color="secondary">País: <b>{{pasajero.nombre_pais}}</b></h5>
+                    <h5 *ngIf="!pasajero.rut" ion-text color="secondary">Pasaporte: <b>{{ pasajero.pasaporte }}</b></h5>
+                    <h5 *ngIf="pasajero.rut" ion-text color="secondary">RUT: <b>{{ pasajero.rut }}</b></h5>
+                    <h4 ion-text color="secondary">Valor: <b>${{pasajero.valor | currency:'CLP' : 'symbol':'1.0' }}</b></h4>
+                  </div>
+                  <div ion-col>
+                    <h5 ion-text color="secondary">Reimprimir Tarjeta de Embarque:</h5>
+                    <button [disabled]='reserva_data.estado == 8' ion-button round outline class="btn_reserva" (click)="generarPDF(pasajero)">
+                      <ion-icon name="clipboard"></ion-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+</ion-content>

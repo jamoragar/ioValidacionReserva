@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+        <span ion-text>Vehículo(s) de Reserva: </span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="common-bg">
+  <div class="trip-info card round">
+    <ion-grid padding>
+      <ion-row *ngFor="let vehiculo of data_vehiculo">
+        <ion-col>
+          <div class="card round" margin-top>
+
+            <ion-list no-margin>
+              <ion-item class="primary-bg">
+                  <h2 ion-text class="text-white bold">{{vehiculo.tipo_vehiculo}} Patente: {{ vehiculo.patente }}</h2>
+              </ion-item>
+            </ion-list>
+
+            <div padding>
+              <div ion-row>
+                <div ion-col>
+                    <h5 ion-text color="secondary">Tarifa: <b>{{vehiculo.nombre_tarifa}}</b></h5>
+                    <h5 ion-text color="secondary">Encargado: <b>{{vehiculo.nombre}} {{vehiculo.apellido}}</b></h5>
+                    <h5 ion-text color="secondary">Rut: <b>{{vehiculo.rut}}</b></h5>
+                    <h4 ion-text color="secondary">Valor: <b>${{vehiculo.valor | currency:'CLP' : 'symbol':'1.0' }}</b></h4>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

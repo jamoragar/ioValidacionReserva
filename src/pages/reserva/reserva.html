@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+        <span ion-text>Número de Reserva: {{ reserva_data.id_reserva }} - Creada por: {{ creador_reserva.nombre }} {{creador_reserva.apellido }} - Fecha: {{ creador_reserva.fecha_creacion | date: "dd/MM/yyy" }}</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="common-bg">
+
+  <div class="trip-info card round">
+    <ion-grid padding>
+      <ion-row>
+        <ion-col width-66>
+          <h5 ion-text color="primary">Nombre de Encargado: <b>{{ reserva_data.nombre }} {{ reserva_data.apellido }}</b></h5>
+          <h5 ion-text color="primary">E-Mail: <b>{{ reserva_data.email_reserva }}</b></h5>
+          <h5 ion-text color="primary">Teléfono: <b>{{ reserva_data.telefono }}</b></h5>
+          <div class="estado" margin-top *ngIf="reserva_data.estado == 0">
+            <span ion-text class="text-red">Anulado</span>
+          </div>
+          <div class="estado" margin-top *ngIf="reserva_data.estado == 8">
+            <span ion-text>Solo Reservado</span>
+          </div>
+          <div class="estado" margin-top *ngIf="reserva_data.estado >= 72">
+            <ion-icon name="checkmark" class="text-green"></ion-icon>
+            <span ion-text>Pagado</span>
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div>
+            <span class="bold">Origen - Destino:</span>
+            <br/>
+            <span ion-text color="dark"><b>{{ cruce_data.origen }} - {{ cruce_data.destino }}</b></span>
+          </div>
+          <div margin-top>
+            <span class="dark"><b>Fecha de Cruce: <br>{{ cruce_data.horario_cruce | date :"dd/MM/yyyy h:mma ":"+0000" }}</b></span> 
+            <br/><br/>
+            <span ion-text color="dark"><b>Horario de Presentación: <br> {{ cruce_data.horario_presentacion | date: "dd/MM/yyy h:mma ":"+0000" }}</b></span>
+          </div>
+          <br/>
+          <div>
+            <span class="bold"><b>Cantidad de Pasajeros:</b></span>
+            <br>
+            <span ion-text color="dark"><b>{{ pasajero_data.length }}</b></span>
+          </div>
+          <div *ngIf="vehiculo_data.length > 0">
+            <span class="bold"><b>Cantidad de Vehículos:</b></span>
+            <br>
+            <span ion-text color="dark"><b>{{ vehiculo_data.length }}</b></span>
+          </div>
+          <div margin-top>
+            <span class="bold">Valor Total:</span>
+            <h5 ion-text color="primary" class="bold" no-margin><b>{{ valor_reserva }}</b></h5> 
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div ion-row>
+    <div ion-col>
+      <div class="card round" margin-top>
+        <ion-list no-margin>
+          <ion-item class="primary-bg">
+            <h2 ion-text class="text-white bold">Facturación:</h2>
+          </ion-item>
+        </ion-list>
+
+        <div padding>
+          <div ion-row>
+            <div ion-col>
+              <h5 *ngIf="reserva_data.fecha_pago" ion-text color="secondary">Fecha de Pago: <b>{{ reserva_data.fecha_pago | date: "dd/MM/yyy h:mma ":"+0000" }}</b></h5>
+              <h5 *ngIf="!reserva_data.fecha_pago" ion-text color="secondary">Fecha de Pago: <b class="resaltar-estado">Pendiente...</b></h5>
+              <h5 *ngIf="reserva_data.correlativo" ion-text color="secondary">N° de Documento: <b>{{ reserva_data.correlativo }}</b></h5>
+              <h5 *ngIf="!reserva_data.correlativo" ion-text color="secondary">N° de Documento: <b class="resaltar-estado">Pendiente...</b></h5>
+              <h5 *ngIf="reserva_data.nombre_tipo_doc" ion-text color="secondary">Tipo de Documento: <b>{{ reserva_data.nombre_tipo_doc }}</b></h5>
+              <h5 *ngIf="!reserva_data.nombre_tipo_doc" ion-text color="secondary">Tipo de Documento: <b class="resaltar-estado">Pendiente...</b></h5>
+              <h5 *ngIf="reserva_data.fecha_limite_pago" ion-text color="secondary">Fecha Límite de Pago: <b>{{ reserva_data.fecha_limite_pago | date: "dd/MM/yyy h:mma ":"+0000" }}</b></h5>
+              <h5 *ngIf="!reserva_data.fecha_limite_pago" ion-text color="secondary">Fecha Límite de Pago: <b class="resaltar-estado">Pendiente...</b></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="reserva_data.razon_social" ion-col>
+      <div class="card round" margin-top>
+          <ion-list no-margin>
+            <ion-item class="primary-bg">
+              <h2 ion-text class="text-white bold">Empresa:</h2>
+            </ion-item>
+          </ion-list>
+  
+          <div padding>
+            <div ion-row>
+              <div ion-col>
+                <h5 ion-text color="secondary">Número de Dcto.: <b>{{ reserva_data.rut_cliente }}</b></h5>
+                <h5 ion-text color="secondary">Razón Social: <b>{{ reserva_data.razon_social }}</b></h5>
+                <h5 ion-text color="secondary">Giro: <b>{{ reserva_data.giro }}</b></h5>
+                <h5 ion-text color="secondary">Comuna: <b>{{ reserva_data.comuna }}</b></h5>
+                <h5 ion-text color="secondary">Dorección: <b>{{ reserva_data.direccion }}</b></h5>
+                <h5 ion-text color="secondary">E-mail: <b>{{ reserva_data.email_cliente }}</b></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</ion-content>

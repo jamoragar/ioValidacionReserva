@@ -1,0 +1,131 @@
+<ion-header>
+    <ion-navbar color="secondary">
+      <ion-title>
+        <span ion-text>Embarque Manual de Pasajeros</span>
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      Ingrese la información del Pasajero
+    </ion-card-header>
+  
+    <ion-card-content>
+      <form #myForm="ngForm" (ngSubmit)="embarcarPax()">
+        <ion-list>
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label stacked color="primary">Origen:</ion-label>
+                <ion-select #b [(ngModel)]="form.Origen" placeholder="Seleccione un Origen"
+                            name="Origen"
+                            interface="action-sheet"
+                            (ionChange)="getDestino(form.Origen)"
+                            required>
+                  <ion-option *ngFor="let origen of origenes">{{origen}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label stacked color="primary">Destino:</ion-label>
+                <ion-select  (ionChange)="funcion(form.Destino)" [(ngModel)]="form.Destino"
+                              name="Destino"
+                              interface="action-sheet"
+                              placeholder="Seleccione un Destino"
+                              required>
+                  <ion-option *ngFor="let destino of destinos" [value]="destino.id_tramo">{{destino.nombre_tramo}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-item>
+            <ion-label stacked color="primary">Fecha:</ion-label>
+            <ion-select #fecha [(ngModel)]="form.fecha_cruce"
+                        name="fecha"
+                        cancelText="Cancelar" doneText="OK"
+                        placeholder="Seleccione la fecha de Viaje"
+                        required>
+              <ion-option *ngFor="let cruce of cruces" [value]="cruce.horario_cruce">{{cruce.horario_cruce | date:"dd '/' MM '/' yyyy HH:mm'hrs.'":"+0000"}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label stacked color="primary">Nacionalidad:</ion-label>
+                <ion-select #nacionalidad [(ngModel)]="form.Nacionalidad"
+                            name="Nacionalidad"
+                            interface="action-sheet"
+                            placeholder="Seleccione la Nacionalidad del pasajero">
+                  <ion-option value=0>Seleccione la Nacionalidad del pasajero</ion-option>
+                  <ion-option *ngFor="let pais of paises" [value]="pais.codigo">{{pais.nombre}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label stacked color="primary">Rut/Pasaporte:</ion-label>
+                <ion-input  #rut_pasaporte [(ngModel)]="form.Rut_pasaporte"
+                            type="text" name="Rut_pasaporte"
+                            placeholder="Ingrese el Número de identificación del pasajero" (ionBlur)="getDataPasajero(form.Nacionalidad,form.Rut_pasaporte)"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label stacked color="primary">Nombre:</ion-label>
+                <ion-input  #nombre [(ngModel)]="form.Nombre"
+                            type="text" name="Nombre"
+                            placeholder="Ingrese el Nombre del pasajero"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label stacked color="primary">Apellido:</ion-label>
+                <ion-input  #apellido [(ngModel)]="form.Apellido"
+                            type="text" placeholder="Ingrese el Apellido del pasajero"
+                            name="Apellido"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+            
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label stacked color="primary">Género:</ion-label>
+                <ion-select #genero [(ngModel)]="form.Genero"
+                            name="Genero"
+                            placeholder="Seleccione Genero">
+                  <ion-option value="2">Femenino</ion-option>
+                  <ion-option value="1">Masculino</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label stacked color="primary">Fecha de Nacimiento</ion-label>
+                <ion-datetime #fecha_nac [(ngModel)]="form.Fecha_nacimiento"
+                              name="Fecha_nacimiento"
+                              displayFormat="DD MMM YYYY"
+                              [monthShortNames]="month_names" cancelText="Cancelar"
+                              doneText="OK" placeholder="Seleccione la fecha de Nacimiento">
+                </ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+        </ion-list>
+        <button id="btnEmbarcarPasajero" ion-button block type="submit">Embarcar Pasajero</button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  
+</ion-content>

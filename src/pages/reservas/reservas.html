@@ -8,9 +8,16 @@
 
 
 <ion-content padding class="trips detail-bg">
-  <ion-card *ngFor="let reserva of reservas">
+  <ion-card tappable *ngFor="let reserva of reservas" style="background: url('../../assets/imgs/bg_card.jpg'); background-size: 190%;"
+            (click)="abrirReserva(reserva.id_reserva)">
     <ion-card-title style="margin-left:1em;">ID de Reserva: {{ reserva.id_reserva }}</ion-card-title>
     <ion-card-content>
+      <h2 style="margin-left:1.3em; padding-left:1rem;">Nombre: <b>{{reserva.nombre}} {{reserva.apellido}}</b></h2>
+      <div class="padding-sm" style="color: black;font-size: 1.1em;">
+        <span *ngIf="reserva.rut" style="margin-left:1.5em;">RUT: <b>{{reserva.rut}}</b></span>
+        <span *ngIf="!reserva.rut" style="margin-left:1.5em;">Pasaporte: <b>{{reserva.pasaporte}}</b></span>
+        <span class="pull-right" ion-text style="margin-right:1em;">Fecha de Vencimiento: <b>{{reserva.fecha_limite_pago | date :"dd/MM/yyyy 'Cruce:' h:mma ":"+0000" }}</b></span>
+      </div>
       <div class="padding-sm primary-bg">
         <ion-icon name="time" class="text-white"></ion-icon>
         <span ion-text class="text-white">{{ reserva.horario_cruce | date :"dd/MM/yyyy 'Cruce:' h:mma ":"+0000" }}</span>

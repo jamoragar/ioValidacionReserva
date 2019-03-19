@@ -14,6 +14,7 @@ export class ReservaPersonaPage {
   pasajero_data:any;
   valor_reserva:any;
   url:string = "http://www.tabsa.cl/portal/index.php/es/reservas-ext2?view=externa&task=externa.generarTicket&format=pdf&ticket=";
+ 
 
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {

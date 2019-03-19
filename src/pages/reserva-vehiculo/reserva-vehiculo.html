@@ -29,6 +29,12 @@
                     <h4 ion-text color="secondary">Valor: <b>${{vehiculo.valor | currency:'CLP' : 'symbol':'1.0' }}</b></h4>
 
                 </div>
+                <div ion-col>
+                  <h5 ion-text color="secondary">Reimprimir Tarjeta de Embarque Vehículo:</h5>
+                  <button [disabled]='reserva_data.estado == 8' ion-button round outline class="btn_reserva" (click)="generarPdfVehiculo(vehiculo)">
+                    <ion-icon name="clipboard"></ion-icon>
+                  </button>
+                </div>
               </div>
             </div>
 

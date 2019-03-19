@@ -1,10 +1,9 @@
-import { Component, Input, ViewChild  } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content, AlertController } from 'ionic-angular';
+import { Component, ViewChild  } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, ToastController  } from 'ionic-angular';
 //Providers
 import { RestServiceProvider } from '../../providers/rest-service/rest-service';
 //Moment.js for dates
 import * as moment from 'moment';
-import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 @IonicPage()
 @Component({
@@ -27,7 +26,7 @@ export class EmbarqueManualPage {
   month_names:any = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restService: RestServiceProvider,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController, public toastController: ToastController) {
     this.restService.getOrigen().then(data_origen =>{
       this.origen = data_origen;
       this.origen.forEach((value, i) => {
@@ -64,28 +63,33 @@ export class EmbarqueManualPage {
   }
 
   getDataPasajero(nacionalidad, rut_pasaporte){
-    let tipo_documento
-    if(nacionalidad == 152)
+    if(!rut_pasaporte || rut_pasaporte.length < 9 || rut_pasaporte.trim() == "" || nacionalidad == 0){
+      this.presentToast();
+    }
+    else{
+      let tipo_documento;
+      if(nacionalidad == 152)
       tipo_documento = 1;
-    if(nacionalidad != 152 && nacionalidad != 0)
+      if(nacionalidad != 152 && nacionalidad != 0)
       tipo_documento = 2;
       
-
-    this.restService.getPasajeroData({tipo_identificacion:tipo_documento, num_identificacion: rut_pasaporte}).then(data_pasajero =>{      
-      if(data_pasajero != ""){
-        this.pasajero = data_pasajero[0];
-        console.log(this.pasajero);
-        this.form.Nombre = this.pasajero.nombre;
-        this.form.Apellido = this.pasajero.apellido;
-        this.form.Genero = this.pasajero.sexo;
-        this.form.Fecha_nacimiento = moment(this.pasajero.fecha_nacimiento.split("T")[0]).format('YYYY-MM-DD');
-
-      }
-      else{
-        this.pasajero = "";
-        console.log(this.pasajero)
-      }
-    })
+  
+      this.restService.getPasajeroData({tipo_identificacion:tipo_documento, num_identificacion: rut_pasaporte.trim()}).then(data_pasajero =>{      
+        if(data_pasajero != ""){
+          this.pasajero = data_pasajero[0];
+          this.form.Nombre = this.pasajero.nombre;
+          this.form.Apellido = this.pasajero.apellido;
+          this.form.Genero = this.pasajero.sexo;
+          this.form.Fecha_nacimiento = moment(this.pasajero.fecha_nacimiento.split("T")[0]).format('YYYY-MM-DD');
+  
+        }
+        else{
+          this.pasajero = "";
+          console.log(this.pasajero)
+        }
+      })
+    }
+    
   }
 
   funcion(id_tramo){
@@ -98,6 +102,7 @@ export class EmbarqueManualPage {
   }
 
   embarcarPax(){
+    console.log(this.form.Rut_pasaporte)
     this.formValues.resetForm();
     if(this.pasajero == ""){
       this.paxNoEncontrado(true);
@@ -133,6 +138,13 @@ export class EmbarqueManualPage {
       });
       alert.present();
     }
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Debe completar todos los campos para poder continuar...',
+      duration: 2666
+    });
+    toast.present();
   }
     
 

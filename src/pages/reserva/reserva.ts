@@ -14,6 +14,7 @@ export class ReservaPage {
   cruce_data:any;
   pasajero_data:any;
   vehiculo_data:any;
+  carga_data:any;
   valor_reserva:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -22,6 +23,7 @@ export class ReservaPage {
     this.cruce_data = this.navParams.data.cruce[0];
     this.pasajero_data = this.navParams.data.pasajero;
     this.valor_reserva = this.navParams.data.valor_reserva;
+    this.carga_data = this.navParams.data.data_carga;
     this.vehiculo_data = this.navParams.data.data_vehiculo;
   }
 

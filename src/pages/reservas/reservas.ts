@@ -40,6 +40,7 @@ export class ReservasPage {
     this.restService.postDatosCarga({id_reserva:this.id_reserva})
       .then(data_carga_reserva =>{
         this.carga_data = data_carga_reserva;
+        
       });
 
     this.restService.postCreadorReserva({id_reserva: this.id_reserva})
@@ -68,7 +69,7 @@ export class ReservasPage {
     loading.present();
     setTimeout(() => {
 
-      this.navCtrl.push(TabsReservaPage, {pasajero: this.pasajero_data, reserva: this.reserva_data, cruce: this.cruce_data, valor_reserva: this.valor_reserva, creador_reserva: this.creador_reserva, data_vehiculo: this.vehiculo_data});
+      this.navCtrl.push(TabsReservaPage, {pasajero: this.pasajero_data, reserva: this.reserva_data, cruce: this.cruce_data, valor_reserva: this.valor_reserva, creador_reserva: this.creador_reserva, data_vehiculo: this.vehiculo_data, data_carga:this.carga_data});
     }, 800);
     setTimeout(() => {
       loading.dismiss();
